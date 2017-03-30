@@ -12,7 +12,7 @@ namespace WindowsFormsApplication1
 {
     public partial class Form1 : Form
     {
-        public struct Person
+        public class Person    // changed struct to class
         {
             public string FName;
             public string MName;
@@ -50,7 +50,7 @@ namespace WindowsFormsApplication1
 
         public void FillLabel(Person temp)
         {
-            lblFeedback.Text = temp.FName + "\n";
+            lblFeedback.Text = temp.FName + " poopy" + "\n";
             lblFeedback.Text += temp.MName + "\n";
             lblFeedback.Text += temp.LName + "\n";
             lblFeedback.Text += temp.Street1 + "\n";
