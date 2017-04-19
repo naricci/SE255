@@ -22,6 +22,8 @@ namespace WindowsFormsApplication1
         {
             // Create instance of Person class called Nick
             Person Nick = new Person();
+
+            // Fill in from Form
             Nick.FName = txtFName.Text;
             Nick.MName = txtMName.Text;
             Nick.LName = txtLName.Text;
@@ -30,10 +32,22 @@ namespace WindowsFormsApplication1
             Nick.City = txtCity.Text;
             Nick.State = txtState.Text;
             Nick.Zipcode = txtZipCode.Text;
+            Nick.Country = txtCountry.Text;
             Nick.Phone = txtPhone.Text;
             Nick.Email = txtEmail.Text;
 
-            FillLabel(Nick);
+            // Alternate method to create instance of Person Class
+            Person temp = new Person(txtFName.Text, txtMName.Text, txtLName.Text, txtStreet1.Text, txtStreet2.Text, txtCity.Text, txtState.Text, txtZipCode.Text, txtCountry.Text, txtPhone.Text, txtEmail.Text);
+
+            if (temp.Feedback.Contains("ERROR:"))
+            {
+                lblFeedback.Text = temp.Feedback;
+            }
+            else
+            {
+                FillLabel(temp);
+                // lblFeedback.Text = temp.AddPerson();   // Lab 4
+            }
         }
 
         public void FillLabel(Person temp)
@@ -46,8 +60,25 @@ namespace WindowsFormsApplication1
             lblFeedback.Text += temp.City + "\n";
             lblFeedback.Text += temp.State + "\n";
             lblFeedback.Text += temp.Zipcode + "\n";
+            lblFeedback.Text += temp.Country + "\n";
             lblFeedback.Text += temp.Phone + "\n";
             lblFeedback.Text += temp.Email + "\n";
+        }
+
+        private void btnClear_Click(object sender, EventArgs e)
+        {
+            // Loop to clear data from the form
+            foreach (var c in this.Controls)
+            {
+                // Clear the TextBoxes
+                if (c is TextBox)
+                {
+                    ((TextBox)c).Text = String.Empty;
+                }
+            }
+
+            // Clear Feedback Label
+            lblFeedback.Text = "Feedback";
         }
     }
 }

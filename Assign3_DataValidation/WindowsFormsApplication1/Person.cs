@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+// Lab 4 System Libraries to include
+// using System.Data;                  // Library to bring in a dataset
+// using System.Data.SqlClient;        // Library to connect to SQL Server
 
 namespace WindowsFormsApplication1
 {
@@ -18,8 +21,10 @@ namespace WindowsFormsApplication1
         private string city;
         private string state;
         private string zipcode;
+        private string country;
         private string phone;
         private string email;
+        private string feedback;
 
         // Create public variables to use as the front-end for their private counterparts above
         public string FName
@@ -29,7 +34,14 @@ namespace WindowsFormsApplication1
             // Mutator
             set                         // Allows the private variable to get the value of the public variable if it
             {
-                fName = value;
+                if (ValidationLibrary.IsItFilledIn(value, 1) == false)
+                {
+                    feedback += "ERROR: Invalid First Name...Must be at least 1 character.\n";
+                }
+                else
+                {
+                    fName = value;
+                }
             }
         }
 
@@ -47,7 +59,14 @@ namespace WindowsFormsApplication1
             get { return lName; }
             set
             {
-                lName = value;
+                if (ValidationLibrary.IsItFilledIn(value, 1) == false)
+                {
+                    feedback += "ERROR: Invalid Last Name...Must be at least 1 character.\n";
+                }
+                else
+                {
+                    lName = value;
+                }
             }
         }
 
@@ -83,7 +102,14 @@ namespace WindowsFormsApplication1
             get { return state; }
             set
             {
-                state = value;
+                if (ValidationLibrary.IsValidLength(value, 2) == false)
+                {
+                    feedback += "ERROR: Invalid length for State abbreviation...Must be exactly 2 letters.\n";
+                }
+                else
+                {
+                    state = value;
+                }
             }
         }
 
@@ -92,7 +118,30 @@ namespace WindowsFormsApplication1
             get { return zipcode; }
             set
             {
-                zipcode = value;
+                if (ValidationLibrary.IsValidLength(value, 5) == false)
+                {
+                    feedback += "ERROR: Invalid length for Zip Code...Must be exactly five numbers.\n";
+                }
+                else
+                {
+                    zipcode = value;
+                }
+            }
+        }
+
+        public string Country
+        {
+            get { return country; }
+            set
+            {
+                if (ValidationLibrary.IsWithinRange(value, 3, 20) == false)
+                {
+                    feedback += "ERROR: Invalid length for Country name...Must be between 3 and 20 characters.\n";
+                }
+                else
+                {
+                    country = value;
+                }
             }
         }
 
@@ -110,8 +159,86 @@ namespace WindowsFormsApplication1
             get { return email; }
             set
             {
-                email = value;
+                if (ValidationLibrary.IsValidEmail(value) == false)
+                {
+                    feedback += "ERROR: Invalid Email Address format...\n";
+                }
+                else
+                {
+                    email = value;
+                }  
             }
         }
-    }
-};
+
+        public string Feedback
+        {
+            get { return feedback; }
+        }
+
+
+        // Default Constructor
+        public Person()
+        {
+            // Start by giving the feedback an empty string
+            feedback = "";
+        }
+
+        // Overloaded Constructor
+        public Person(string fName, string mName, string lName, string street1, string street2, string city, string state, string zipcode, string country, string phone, string email)
+        {
+            this.FName = fName;
+            this.MName = mName;
+            this.LName = lName;
+            this.Street1 = street1;
+            this.Street2 = street2;
+            this.City = city;
+            this.State = state;
+            this.Zipcode = zipcode;
+            this.Country = country;
+            this.Phone = phone;
+            this.Email = email;
+
+            // Start by giving the feedback an empty string
+            // feedback = "";
+        }
+
+        /*
+        public string AddPerson()
+        {
+            string strFeedback = "";    // User feedback
+
+            string strConn = "Server=SQL.NEIT.EDU,4500;Database=SE255_NRicci;User Id=SE255_NRicci;Password = 001405200;";   // Connection String
+
+            SqlConnection conn = new SqlConnection();   // Create a Connection Object
+            conn.ConnectionString = strConn;    // Point the Connection Object to our Connection String
+
+            SqlCommand comm = new SqlCommand(); // Create a Command Object
+            // Needs to know the connection and sql string
+            comm.Connection = conn;
+            comm.CommandText = "INSERT INTO People (FName, MName, LName) VALUES (@FName, @MName, @LName)";
+
+            comm.Parameters.AddWithValue("(@FName", FName);
+            comm.Parameters.AddWithValue("(@MName", MName);
+            comm.Parameters.AddWithValue("(@LName", LName);
+
+            try { 
+                conn.Open();
+
+                // Perform our add
+                strFeedback = comm.ExecuteNonQuery().ToString() + " Record(s) Added";
+
+                conn.Close();
+
+                // got here...we must be fine
+                // strFeedback = "All good here";   // Main job is to add now, not just connect...
+            }
+            catch (Exception err)
+            {
+                strFeedback = "ERROR: " + err.Message;
+            }
+
+            return strFeedback;     // Return User feedback
+        }
+        */
+    };
+}
