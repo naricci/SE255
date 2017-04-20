@@ -12,7 +12,6 @@ namespace WindowsFormsApplication1
 {
     public partial class Form1 : Form
     {
-
         public Form1()
         {
             InitializeComponent();
@@ -20,7 +19,7 @@ namespace WindowsFormsApplication1
 
         private void btnSubmit_Click(object sender, EventArgs e)
         {
-            // Create instance of Person class called Nick
+            /* Create instance of Person class called Nick
             Person Nick = new Person();
 
             // Fill in from Form
@@ -34,9 +33,9 @@ namespace WindowsFormsApplication1
             Nick.Zipcode = txtZipCode.Text;
             Nick.Country = txtCountry.Text;
             Nick.Phone = txtPhone.Text;
-            Nick.Email = txtEmail.Text;
+            Nick.Email = txtEmail.Text; */
 
-            // Alternate method to create instance of Person Class
+            // Create instance of Person class called temp
             Person temp = new Person(txtFName.Text, txtMName.Text, txtLName.Text, txtStreet1.Text, txtStreet2.Text, txtCity.Text, txtState.Text, txtZipCode.Text, txtCountry.Text, txtPhone.Text, txtEmail.Text);
 
             if (temp.Feedback.Contains("ERROR:"))

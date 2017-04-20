@@ -116,11 +116,5 @@ namespace WindowsFormsApplication1
 
             return result;
         }
-
-        // Receives an integer and we can let user know if length of Country name is a valid length.
-        /*public static bool IsWithinRange(int intTemp, int intMinLen, int intMaxLen)
-        {
-
-        }*/
     };
 }
