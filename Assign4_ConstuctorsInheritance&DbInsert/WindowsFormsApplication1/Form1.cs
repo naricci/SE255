@@ -20,24 +20,21 @@ namespace WindowsFormsApplication1
 
         private void btnSubmit_Click(object sender, EventArgs e)
         {
-            /* Create instance of Person class called Nick
-            Person Nick = new Person();
-
-            // Fill in from Form
-            Nick.FName = txtFName.Text;
-            Nick.MName = txtMName.Text;
-            Nick.LName = txtLName.Text;
-            Nick.Street1 = txtStreet1.Text;
-            Nick.Street2 = txtStreet2.Text;
-            Nick.City = txtCity.Text;
-            Nick.State = txtState.Text;
-            Nick.Zipcode = txtZipCode.Text;
-            Nick.Country = txtCountry.Text;
-            Nick.Phone = txtPhone.Text;
-            Nick.Email = txtEmail.Text; */
-
             // Create instance of Person class called temp
-            Person temp = new Person(txtFName.Text, txtMName.Text, txtLName.Text, txtStreet1.Text, txtStreet2.Text, txtCity.Text, txtState.Text, txtZipCode.Text, txtCountry.Text, txtPhone.Text, txtEmail.Text);
+            Person temp = new Person();
+
+            // Fill in from Form Data
+            temp.FName = txtFName.Text;
+            temp.MName = txtMName.Text;
+            temp.LName = txtLName.Text;
+            temp.Street1 = txtStreet1.Text;
+            temp.Street2 = txtStreet2.Text;
+            temp.City = txtCity.Text;
+            temp.State = txtState.Text;
+            temp.Zipcode = txtZipCode.Text;
+            temp.Country = txtCountry.Text;
+            temp.Phone = txtPhone.Text;
+            temp.Email = txtEmail.Text;
 
             if (temp.Feedback.Contains("ERROR:"))
             {

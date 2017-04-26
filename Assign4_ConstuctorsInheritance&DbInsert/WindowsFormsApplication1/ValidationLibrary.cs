@@ -104,6 +104,25 @@ namespace WindowsFormsApplication1
         }
 
 
+        // Receives an integer and lets user know if State abbreviation is proper length (2).
+        public static bool IsValidLength(int intTemp, int intLength)
+        {
+            bool result = false;
+
+            // Check for correct length of characters
+            if (intTemp != intLength)
+            {
+                result = false;
+            }
+            else
+            {
+                result = true;
+            }
+
+            return result;
+        }
+
+
         // Receives a string and we can let user know if length of Country name is a valid length.
         public static bool IsWithinRange(string strTemp, int intMinLen, int intMaxLen)
         {
