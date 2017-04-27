@@ -53,12 +53,17 @@
             this.lblCountry = new System.Windows.Forms.Label();
             this.txtCountry = new System.Windows.Forms.TextBox();
             this.btnClear = new System.Windows.Forms.Button();
+            this.chkEmployee = new System.Windows.Forms.CheckBox();
+            this.lblEmployeeID = new System.Windows.Forms.Label();
+            this.txtEmployeeID = new System.Windows.Forms.TextBox();
+            this.lblHourlyRate = new System.Windows.Forms.Label();
+            this.txtHourlyRate = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // txtFName
             // 
             this.txtFName.Location = new System.Drawing.Point(158, 72);
-            this.txtFName.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.txtFName.Margin = new System.Windows.Forms.Padding(6);
             this.txtFName.Name = "txtFName";
             this.txtFName.Size = new System.Drawing.Size(252, 31);
             this.txtFName.TabIndex = 0;
@@ -66,7 +71,7 @@
             // txtMName
             // 
             this.txtMName.Location = new System.Drawing.Point(614, 72);
-            this.txtMName.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.txtMName.Margin = new System.Windows.Forms.Padding(6);
             this.txtMName.Name = "txtMName";
             this.txtMName.Size = new System.Drawing.Size(226, 31);
             this.txtMName.TabIndex = 1;
@@ -74,7 +79,7 @@
             // txtLName
             // 
             this.txtLName.Location = new System.Drawing.Point(1022, 72);
-            this.txtLName.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.txtLName.Margin = new System.Windows.Forms.Padding(6);
             this.txtLName.Name = "txtLName";
             this.txtLName.Size = new System.Drawing.Size(304, 31);
             this.txtLName.TabIndex = 2;
@@ -82,7 +87,7 @@
             // txtStreet1
             // 
             this.txtStreet1.Location = new System.Drawing.Point(156, 148);
-            this.txtStreet1.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.txtStreet1.Margin = new System.Windows.Forms.Padding(6);
             this.txtStreet1.Name = "txtStreet1";
             this.txtStreet1.Size = new System.Drawing.Size(484, 31);
             this.txtStreet1.TabIndex = 3;
@@ -90,7 +95,7 @@
             // txtStreet2
             // 
             this.txtStreet2.Location = new System.Drawing.Point(838, 148);
-            this.txtStreet2.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.txtStreet2.Margin = new System.Windows.Forms.Padding(6);
             this.txtStreet2.Name = "txtStreet2";
             this.txtStreet2.Size = new System.Drawing.Size(488, 31);
             this.txtStreet2.TabIndex = 4;
@@ -188,7 +193,7 @@
             // txtCity
             // 
             this.txtCity.Location = new System.Drawing.Point(91, 223);
-            this.txtCity.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.txtCity.Margin = new System.Windows.Forms.Padding(6);
             this.txtCity.Name = "txtCity";
             this.txtCity.Size = new System.Drawing.Size(332, 31);
             this.txtCity.TabIndex = 5;
@@ -196,7 +201,7 @@
             // txtState
             // 
             this.txtState.Location = new System.Drawing.Point(594, 223);
-            this.txtState.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.txtState.Margin = new System.Windows.Forms.Padding(6);
             this.txtState.Name = "txtState";
             this.txtState.Size = new System.Drawing.Size(310, 31);
             this.txtState.TabIndex = 6;
@@ -204,7 +209,7 @@
             // txtZipCode
             // 
             this.txtZipCode.Location = new System.Drawing.Point(1118, 223);
-            this.txtZipCode.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.txtZipCode.Margin = new System.Windows.Forms.Padding(6);
             this.txtZipCode.Name = "txtZipCode";
             this.txtZipCode.Size = new System.Drawing.Size(208, 31);
             this.txtZipCode.TabIndex = 7;
@@ -212,7 +217,7 @@
             // txtPhone
             // 
             this.txtPhone.Location = new System.Drawing.Point(504, 299);
-            this.txtPhone.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.txtPhone.Margin = new System.Windows.Forms.Padding(6);
             this.txtPhone.Name = "txtPhone";
             this.txtPhone.Size = new System.Drawing.Size(294, 31);
             this.txtPhone.TabIndex = 9;
@@ -230,18 +235,18 @@
             // txtEmail
             // 
             this.txtEmail.Location = new System.Drawing.Point(916, 299);
-            this.txtEmail.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.txtEmail.Margin = new System.Windows.Forms.Padding(6);
             this.txtEmail.Name = "txtEmail";
             this.txtEmail.Size = new System.Drawing.Size(410, 31);
             this.txtEmail.TabIndex = 10;
             // 
             // btnSubmit
             // 
-            this.btnSubmit.Location = new System.Drawing.Point(802, 374);
-            this.btnSubmit.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.btnSubmit.Location = new System.Drawing.Point(766, 462);
+            this.btnSubmit.Margin = new System.Windows.Forms.Padding(6);
             this.btnSubmit.Name = "btnSubmit";
             this.btnSubmit.Size = new System.Drawing.Size(256, 38);
-            this.btnSubmit.TabIndex = 11;
+            this.btnSubmit.TabIndex = 14;
             this.btnSubmit.Text = "Add Contact";
             this.btnSubmit.UseVisualStyleBackColor = true;
             this.btnSubmit.Click += new System.EventHandler(this.btnSubmit_Click);
@@ -249,7 +254,7 @@
             // lblFeedback
             // 
             this.lblFeedback.AutoSize = true;
-            this.lblFeedback.Location = new System.Drawing.Point(24, 447);
+            this.lblFeedback.Location = new System.Drawing.Point(24, 555);
             this.lblFeedback.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.lblFeedback.Name = "lblFeedback";
             this.lblFeedback.Size = new System.Drawing.Size(113, 25);
@@ -276,20 +281,74 @@
             // 
             // btnClear
             // 
-            this.btnClear.Location = new System.Drawing.Point(1070, 374);
+            this.btnClear.Location = new System.Drawing.Point(1070, 462);
             this.btnClear.Margin = new System.Windows.Forms.Padding(6);
             this.btnClear.Name = "btnClear";
             this.btnClear.Size = new System.Drawing.Size(256, 38);
-            this.btnClear.TabIndex = 12;
+            this.btnClear.TabIndex = 15;
             this.btnClear.Text = "Clear Form";
             this.btnClear.UseVisualStyleBackColor = true;
             this.btnClear.Click += new System.EventHandler(this.btnClear_Click);
+            // 
+            // chkEmployee
+            // 
+            this.chkEmployee.AutoSize = true;
+            this.chkEmployee.Location = new System.Drawing.Point(29, 380);
+            this.chkEmployee.Name = "chkEmployee";
+            this.chkEmployee.Size = new System.Drawing.Size(139, 29);
+            this.chkEmployee.TabIndex = 11;
+            this.chkEmployee.Text = "Employee";
+            this.chkEmployee.UseVisualStyleBackColor = true;
+            this.chkEmployee.CheckedChanged += new System.EventHandler(this.chkEmployee_CheckedChanged);
+            // 
+            // lblEmployeeID
+            // 
+            this.lblEmployeeID.AutoSize = true;
+            this.lblEmployeeID.Location = new System.Drawing.Point(241, 381);
+            this.lblEmployeeID.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
+            this.lblEmployeeID.Name = "lblEmployeeID";
+            this.lblEmployeeID.Size = new System.Drawing.Size(139, 25);
+            this.lblEmployeeID.TabIndex = 23;
+            this.lblEmployeeID.Text = "Employee ID:";
+            // 
+            // txtEmployeeID
+            // 
+            this.txtEmployeeID.Location = new System.Drawing.Point(392, 378);
+            this.txtEmployeeID.Margin = new System.Windows.Forms.Padding(6);
+            this.txtEmployeeID.Name = "txtEmployeeID";
+            this.txtEmployeeID.Size = new System.Drawing.Size(248, 31);
+            this.txtEmployeeID.TabIndex = 12;
+            this.txtEmployeeID.Visible = false;
+            // 
+            // lblHourlyRate
+            // 
+            this.lblHourlyRate.AutoSize = true;
+            this.lblHourlyRate.Location = new System.Drawing.Point(734, 381);
+            this.lblHourlyRate.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
+            this.lblHourlyRate.Name = "lblHourlyRate";
+            this.lblHourlyRate.Size = new System.Drawing.Size(131, 25);
+            this.lblHourlyRate.TabIndex = 24;
+            this.lblHourlyRate.Text = "Hourly Rate:";
+            // 
+            // txtHourlyRate
+            // 
+            this.txtHourlyRate.Location = new System.Drawing.Point(885, 378);
+            this.txtHourlyRate.Margin = new System.Windows.Forms.Padding(6);
+            this.txtHourlyRate.Name = "txtHourlyRate";
+            this.txtHourlyRate.Size = new System.Drawing.Size(248, 31);
+            this.txtHourlyRate.TabIndex = 13;
+            this.txtHourlyRate.Visible = false;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1362, 883);
+            this.Controls.Add(this.txtHourlyRate);
+            this.Controls.Add(this.lblHourlyRate);
+            this.Controls.Add(this.txtEmployeeID);
+            this.Controls.Add(this.lblEmployeeID);
+            this.Controls.Add(this.chkEmployee);
             this.Controls.Add(this.btnClear);
             this.Controls.Add(this.txtCountry);
             this.Controls.Add(this.lblCountry);
@@ -315,9 +374,9 @@
             this.Controls.Add(this.txtLName);
             this.Controls.Add(this.txtMName);
             this.Controls.Add(this.txtFName);
-            this.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.Margin = new System.Windows.Forms.Padding(6);
             this.Name = "Form1";
-            this.Text = "Lab 1 - Structures and Classes";
+            this.Text = "Lab 4 - Constructors, Inheritance & Database Inserts";
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -350,6 +409,11 @@
         private System.Windows.Forms.Label lblCountry;
         private System.Windows.Forms.TextBox txtCountry;
         private System.Windows.Forms.Button btnClear;
+        private System.Windows.Forms.CheckBox chkEmployee;
+        private System.Windows.Forms.Label lblEmployeeID;
+        private System.Windows.Forms.TextBox txtEmployeeID;
+        private System.Windows.Forms.Label lblHourlyRate;
+        private System.Windows.Forms.TextBox txtHourlyRate;
     }
 }
 

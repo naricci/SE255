@@ -12,47 +12,57 @@ namespace WindowsFormsApplication1
     public class Employee : Person
     {
         // Set private variables within Employee class
-        private int employeeID;
-        private DateTime startDate;
-        private int writeUps;
-
+        private string employeeID;
+        private double hourlyRate;
+        private string feedback;
 
         // Create public variables to use as the front-end for their private counterparts above
-        public int EmployeeID
+        public string EmployeeID
         {
             get { return employeeID; }
             set { employeeID = value; }
         }
 
-        public DateTime StartDate
+        public double HourlyRate
         {
-            get { return startDate; }
-            set { startDate = value; }
+            get { return hourlyRate; }
+            set
+            {
+                if (ValidationLibrary.IsPositiveNumber(value) == true)
+                {
+                    feedback += "ERROR: Invalid Rate:  Please enter a positive number!\n";
+                }
+                else
+                { 
+                    hourlyRate = value;
+                }
+            }
         }
 
-        public int WriteUps
-        {
-            get { return writeUps; }
-            set { writeUps = value; }
-        }
 
         // Employee Constructor
         public Employee():base()
         {
-            // initialize employees to start with 0 write-ups
-            writeUps = 0;
+            // initialize employee hourly rate to minimum wage
+            hourlyRate = 10;
+            
+            // Start by giving the feedback an empty string
+            feedback = "";
         }
 
         // Overloaded Constructor
-        public Employee(string fName, string mName, string lName, string street1, string street2, string city, string state, string zipcode, string country, string phone, string email, int employeeID, DateTime startDate, int writeUps):base()
+        public Employee(string fName, string mName, string lName, string street1, string street2, string city, string state, string zipcode, string country, string phone, string email, string employeeID, double hourlyRate):base()
         {
-            // initialize employees to start with 0 write-ups
-            writeUps = 0;
+            // initialize employee hourly rate to minimum wage
+            hourlyRate = 10;
+            
+            // Start by giving the feedback an empty string
+            feedback = "";
         }
 
 
         // Function to add Employee to Persons DB
-        public string AddPerson()
+        public string AddEmployee()
         {
             string strFeedback = "";    // User feedback
 
@@ -64,7 +74,7 @@ namespace WindowsFormsApplication1
             SqlCommand comm = new SqlCommand(); // Create a Command Object
             // Needs to know the connection and sql string
             comm.Connection = conn;
-            comm.CommandText = "INSERT INTO Employees (FName, MName, LName, Street1, Street2, City, State, Zipcode, Country, Phone, Email, EmployeeID, StartDate, WriteUps) VALUES (@FName, @MName, @LName, @Street1, @Street2, @City, @State, @Zipcode, @Country, @Phone, @Email, @EmployeeID, @StartDate, @WriteUps)";
+            comm.CommandText = "INSERT INTO Employees (FName, MName, LName, Street1, Street2, City, State, Zipcode, Country, Phone, Email, EmployeeID, HourlyRate) VALUES (@FName, @MName, @LName, @Street1, @Street2, @City, @State, @Zipcode, @Country, @Phone, @Email, @EmployeeID, @HourlyRate)";
 
             comm.Parameters.AddWithValue("@FName", FName);
             comm.Parameters.AddWithValue("@MName", MName);
@@ -78,8 +88,7 @@ namespace WindowsFormsApplication1
             comm.Parameters.AddWithValue("@Phone", Phone);
             comm.Parameters.AddWithValue("@Email", Email);
             comm.Parameters.AddWithValue("@EmployeeID", EmployeeID);
-            comm.Parameters.AddWithValue("@StartDate", StartDate);
-            comm.Parameters.AddWithValue("@WriteUps", WriteUps);
+            comm.Parameters.AddWithValue("@HourlyRate", HourlyRate);
 
             // Try Catch Block for DB
             try

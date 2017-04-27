@@ -120,6 +120,10 @@ namespace WindowsFormsApplication1
                 {
                     feedback += "ERROR: Invalid length for Zip Code...Must be exactly five numbers.\n";
                 }
+                else if (ValidationLibrary.IsNumber(value) == false)
+                {
+                    feedback += "ERROR: Zip Code must be a 5-digit number.\n";
+                }
                 else
                 {
                     zipcode = value;
