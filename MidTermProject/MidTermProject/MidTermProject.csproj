@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{881A5CB4-7A29-4046-85EE-C1DB797E4C68}</ProjectGuid>
+    <ProjectGuid>{ADD14635-4EF7-4C01-AF23-85C20642FBDD}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>MidTermProject</RootNamespace>
@@ -46,6 +46,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Player.cs" />
+    <Compile Include="Validators.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
