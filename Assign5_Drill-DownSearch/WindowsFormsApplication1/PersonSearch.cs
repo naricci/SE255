@@ -15,19 +15,37 @@ namespace WindowsFormsApplication1
         public PersonSearch()
         {
             InitializeComponent();
+
+            // Set Employee status to false to start
+            chkEmployee.Checked = false;
         }
 
         private void btnSearch_Click(object sender, EventArgs e)
         {
-            // Get Data
-            Person temp = new Person();
-            // Perform the search we created in Person class and store the returned dataset
-            DataSet ds = temp.SearchContacts(txtFirstName.Text, txtLastName.Text);
+            if (chkEmployee.Checked == true)
+            {
+                // Get Data
+                Employee temp = new Employee();
+                // Perform the search we created in Person class and store the returned dataset
+                DataSet ds = temp.SearchEmployees(txtFirstName.Text, txtLastName.Text);
 
-            // Display data (dataset)
-            gvResults.DataSource = ds;                              // point datagrid to dataset
-            gvResults.DataMember = ds.Tables["Persons"].ToString(); // What table in the dataset
-            // gvResults.DataMember = ds.Tables[0].TableName;       // Alt. Method to display table without knowing the name
+                // Display data (dataset)
+                gvResults.DataSource = ds;                              // point datagrid to dataset
+                gvResults.DataMember = ds.Tables["Employees"].ToString(); // What table in the dataset
+                // gvResults.DataMember = ds.Tables[0].TableName;       // Alt. Method to display table without knowing the name
+            }
+            else
+            {
+                // Get Data
+                Person temp = new Person();
+                // Perform the search we created in Person class and store the returned dataset
+                DataSet ds = temp.SearchContacts(txtFirstName.Text, txtLastName.Text);
+
+                // Display data (dataset)
+                gvResults.DataSource = ds;                              // point datagrid to dataset
+                gvResults.DataMember = ds.Tables["Persons"].ToString(); // What table in the dataset
+                // gvResults.DataMember = ds.Tables[0].TableName;       // Alt. Method to display table without knowing the name
+            }
         }
 
         private void btnClearSearch_Click(object sender, EventArgs e)
@@ -61,7 +79,7 @@ namespace WindowsFormsApplication1
              * RATHER THAN ADDING DATA
              */
             Form1 Editor = new Form1(intPerson_ID);
-            Editor.ShowDialog(); 
+            Editor.ShowDialog();
         }
     }
 }

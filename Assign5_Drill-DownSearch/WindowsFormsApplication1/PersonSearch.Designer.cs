@@ -34,9 +34,8 @@
             this.txtFirstName = new System.Windows.Forms.TextBox();
             this.lblLastName = new System.Windows.Forms.Label();
             this.lblFirstName = new System.Windows.Forms.Label();
-            this.txtMiddleName = new System.Windows.Forms.TextBox();
-            this.lblMiddleName = new System.Windows.Forms.Label();
             this.btnClearSearch = new System.Windows.Forms.Button();
+            this.chkEmployee = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.gvResults)).BeginInit();
             this.SuspendLayout();
             // 
@@ -61,7 +60,7 @@
             // 
             // txtLastName
             // 
-            this.txtLastName.Location = new System.Drawing.Point(143, 59);
+            this.txtLastName.Location = new System.Drawing.Point(386, 22);
             this.txtLastName.Name = "txtLastName";
             this.txtLastName.Size = new System.Drawing.Size(155, 20);
             this.txtLastName.TabIndex = 9;
@@ -76,7 +75,7 @@
             // lblLastName
             // 
             this.lblLastName.AutoSize = true;
-            this.lblLastName.Location = new System.Drawing.Point(79, 62);
+            this.lblLastName.Location = new System.Drawing.Point(322, 25);
             this.lblLastName.Name = "lblLastName";
             this.lblLastName.Size = new System.Drawing.Size(58, 13);
             this.lblLastName.TabIndex = 7;
@@ -91,22 +90,6 @@
             this.lblFirstName.TabIndex = 6;
             this.lblFirstName.Text = "First Name";
             // 
-            // txtMiddleName
-            // 
-            this.txtMiddleName.Location = new System.Drawing.Point(385, 22);
-            this.txtMiddleName.Name = "txtMiddleName";
-            this.txtMiddleName.Size = new System.Drawing.Size(155, 20);
-            this.txtMiddleName.TabIndex = 13;
-            // 
-            // lblMiddleName
-            // 
-            this.lblMiddleName.AutoSize = true;
-            this.lblMiddleName.Location = new System.Drawing.Point(310, 25);
-            this.lblMiddleName.Name = "lblMiddleName";
-            this.lblMiddleName.Size = new System.Drawing.Size(69, 13);
-            this.lblMiddleName.TabIndex = 12;
-            this.lblMiddleName.Text = "Middle Name";
-            // 
             // btnClearSearch
             // 
             this.btnClearSearch.Location = new System.Drawing.Point(441, 52);
@@ -117,14 +100,23 @@
             this.btnClearSearch.UseVisualStyleBackColor = true;
             this.btnClearSearch.Click += new System.EventHandler(this.btnClearSearch_Click);
             // 
+            // chkEmployee
+            // 
+            this.chkEmployee.AutoSize = true;
+            this.chkEmployee.Location = new System.Drawing.Point(83, 61);
+            this.chkEmployee.Name = "chkEmployee";
+            this.chkEmployee.Size = new System.Drawing.Size(78, 17);
+            this.chkEmployee.TabIndex = 15;
+            this.chkEmployee.Text = "Employee?";
+            this.chkEmployee.UseVisualStyleBackColor = true;
+            // 
             // PersonSearch
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(625, 382);
+            this.Controls.Add(this.chkEmployee);
             this.Controls.Add(this.btnClearSearch);
-            this.Controls.Add(this.txtMiddleName);
-            this.Controls.Add(this.lblMiddleName);
             this.Controls.Add(this.gvResults);
             this.Controls.Add(this.btnSearch);
             this.Controls.Add(this.txtLastName);
@@ -147,8 +139,7 @@
         private System.Windows.Forms.TextBox txtFirstName;
         private System.Windows.Forms.Label lblLastName;
         private System.Windows.Forms.Label lblFirstName;
-        private System.Windows.Forms.TextBox txtMiddleName;
-        private System.Windows.Forms.Label lblMiddleName;
         private System.Windows.Forms.Button btnClearSearch;
+        private System.Windows.Forms.CheckBox chkEmployee;
     }
 }

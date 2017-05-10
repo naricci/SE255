@@ -24,9 +24,13 @@ namespace WindowsFormsApplication1
 
             // Hide Employee Labels & TextBoxes unless 
             lblEmployeeID.Visible = false;
+            lblEmployeeID.Enabled = false;
             txtEmployeeID.Visible = false;
+            txtEmployeeID.Enabled = false;
             lblHourlyRate.Visible = false;
+            lblHourlyRate.Enabled = false;
             txtHourlyRate.Visible = false;
+            txtHourlyRate.Enabled = false;
         }
 
         // OVERLOADED CONSTRUCTOR - Meant to pull in existing data
@@ -62,17 +66,23 @@ namespace WindowsFormsApplication1
             // Default Hourly Rate to minimum wage
             txtHourlyRate.Text = "10";
 
-            // Hide Employee Labels & TextBoxes unless 
+            // Hide/Disable Employee Labels & TextBoxes unless 
             lblEmployeeID.Visible = false;
+            lblEmployeeID.Enabled = false;
             txtEmployeeID.Visible = false;
+            txtEmployeeID.Enabled = false;
             lblHourlyRate.Visible = false;
+            lblHourlyRate.Enabled = false;
             txtHourlyRate.Visible = false;
+            txtHourlyRate.Enabled = false;
         }
 
         private void btnSubmit_Click(object sender, EventArgs e)
         {
             // Create instance of Employee class called temp
             Employee temp = new Employee();
+
+            string feedback = lblFeedback.Text;
 
             // Fill in from Form Data
             temp.FName = txtFName.Text;
@@ -87,21 +97,38 @@ namespace WindowsFormsApplication1
             temp.Phone = txtPhone.Text;
             temp.Email = txtEmail.Text;
             temp.EmployeeID = txtEmployeeID.Text;
-            temp.HourlyRate = double.Parse(txtHourlyRate.Text);
+
+            //Is it filled && 
+            if (ValidationLibrary.IsItFilledIn(txtHourlyRate.Text) == false)
+            {
+                feedback += "ERROR: Please fill in an hourly wage.\n";
+            }
+            else if (ValidationLibrary.IsNull(txtHourlyRate.Text) == false)
+            {
+                feedback += "ERROR: Please fill in an appropriate hourly wage.\n";
+            }
+            else if (double.Parse(txtHourlyRate.Text) < 10.00)
+            {
+                feedback += "ERROR: Hourly wage must be at least $10.\n";
+            }
+            else
+            {
+                temp.HourlyRate = double.Parse(txtHourlyRate.Text);
+            }
+            
             
 
             if (temp.Feedback.Contains("ERROR:"))
             {
+                // Display Errors
                 lblFeedback.Text = temp.Feedback;
             }
             else if (chkEmployee.Checked == true)
             {
-                // FillLabel(temp);
                 lblFeedback.Text = temp.AddEmployee();
             }
             else
             {
-                // FillLabel(temp);
                 lblFeedback.Text = temp.AddPerson();
             }
         }
@@ -120,6 +147,7 @@ namespace WindowsFormsApplication1
             lblFeedback.Text += temp.Phone + "\n";
             lblFeedback.Text += temp.Email + "\n";
 
+            // Filled only if Person is also Employee
             lblFeedback.Text += temp.EmployeeID + "\n";
             lblFeedback.Text += temp.HourlyRate + "\n";
         }
@@ -146,16 +174,24 @@ namespace WindowsFormsApplication1
             if (chkEmployee.Checked == true)
             {
                 lblEmployeeID.Visible = true;
+                lblEmployeeID.Enabled = true;
                 txtEmployeeID.Visible = true;
+                txtEmployeeID.Enabled = true;
                 lblHourlyRate.Visible = true;
+                lblHourlyRate.Enabled = true;
                 txtHourlyRate.Visible = true;
+                txtHourlyRate.Enabled = true;
             }
             else
             {
                 lblEmployeeID.Visible = false;
+                lblEmployeeID.Enabled = false;
                 txtEmployeeID.Visible = false;
+                txtEmployeeID.Enabled = false;
                 lblHourlyRate.Visible = false;
+                lblHourlyRate.Enabled = false;
                 txtHourlyRate.Visible = false;
+                txtHourlyRate.Enabled = false;
             }
         }
     }

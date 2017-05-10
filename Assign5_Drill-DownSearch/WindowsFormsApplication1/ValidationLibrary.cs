@@ -39,7 +39,7 @@ namespace WindowsFormsApplication1
             return result;
         }
 
-        // Receives a string and we can let user know if it is filled in
+        // Receives a double and we can let user know if it is filled in
         public static bool IsItFilledIn(double temp)
         {
             bool result = false;
@@ -47,6 +47,64 @@ namespace WindowsFormsApplication1
             if (temp.ToString().Length > 0)
             {
                 result = true;
+            }
+            else
+            {
+                result = false;
+            }
+
+            return result;
+        }
+
+        // Receives a string to check if field is null and returns true or false
+        public static bool IsNull(string temp)
+        {
+            bool result = false;
+
+            if (temp == "")
+            {
+                result = false;
+            }
+            else
+            {
+                result = true;
+            }
+
+            return result;
+        }
+        
+
+        // Check to make sure all characters are digits
+        public static bool IsAllDigits(string temp)
+        {
+            bool result = true;
+
+            foreach (Char c in temp)
+            {
+                if (Char.IsDigit(c) == false)
+                {
+                    result = false;
+                }
+            }
+
+            return result;
+        }
+
+        // Receives a string and checks if the string is all numbers
+        public static bool IsNumber(string strTemp)
+        {
+            bool result = strTemp.All(char.IsDigit);
+            return result;
+        }
+
+        // Receives a double and checks if the number is positive
+        public static bool IsPositiveNumber(double dblTemp)
+        {
+            bool result = false;
+
+            if (dblTemp <= 0)
+            {
+                result = false;
             }
 
             return result;
@@ -153,28 +211,6 @@ namespace WindowsFormsApplication1
             if (strTemp.Length >= intMinLen && strTemp.Length <= intMaxLen)
             {
                 result = true;
-            }
-
-            return result;
-        }
-
-
-        // Receives a string and checks if the string is all numbers
-        public static bool IsNumber(string strTemp)
-        {
-            bool result = strTemp.All(char.IsDigit);
-            return result;
-        }
-
-
-        // Receives a double and checks if the number is positive
-        public static bool IsPositiveNumber(double dblTemp)
-        {
-            bool result = false;
-
-            if (dblTemp <= 0)
-            {
-                result = false;
             }
 
             return result;

@@ -38,24 +38,18 @@ namespace WindowsFormsApplication1
             get { return hourlyRate; }
             set
             {
-                if (double.IsNaN(hourlyRate) == true)
-                {
-                    feedback += "ERROR: You screwed up.\n";
-                }
-                /*
                 if (ValidationLibrary.IsItFilledIn(value) == false)
                 {
-                    feedback += "ERROR: Please fill in a positive numeric value for Hourly Rate.\n";
+                    feedback += "ERROR: Please fill in an hourly wage.\n";
                 }
-                else if (ValidationLibrary.IsPositiveNumber(value) == true)
+                else if (ValidationLibrary.IsNull(value.ToString()) == false)
                 {
-                    feedback += "ERROR: Invalid Rate:  Please enter a positive number!\n";
+                    feedback += "ERROR: Please fill in an appropriate hourly wage.\n";
                 }
-                else if (hourlyRate < 10)
+                else if (hourlyRate < 10.00)
                 {
-                    feedback += "ERROR: Employee must make at least $10 an hour (minimum wage).\n";
+                    feedback += "ERROR: Hourly wage must be at least $10.\n";
                 }
-                */
                 else
                 { 
                     hourlyRate = value;
@@ -136,56 +130,8 @@ namespace WindowsFormsApplication1
         }
 
 
-        // Function that adds Person to DB
-        public string AddPerson()
-        {
-            string strFeedback = "";    // User feedback
-
-            string strConn = "Server=SQL.NEIT.EDU,4500;Database=SE255_NRicci;User Id=SE255_NRicci;Password = 001405200;";   // Connection String
-
-            SqlConnection conn = new SqlConnection();   // Create a Connection Object
-            conn.ConnectionString = strConn;    // Point the Connection Object to our Connection String
-
-            SqlCommand comm = new SqlCommand(); // Create a Command Object
-            // Needs to know the connection and sql string
-            comm.Connection = conn;
-            comm.CommandText = "INSERT INTO Persons (FName, MName, LName, Street1, Street2, City, State, Zipcode, Country, Phone, Email) VALUES (@FName, @MName, @LName, @Street1, @Street2, @City, @State, @Zipcode, @Country, @Phone, @Email)";
-
-            comm.Parameters.AddWithValue("@FName", FName);
-            comm.Parameters.AddWithValue("@MName", MName);
-            comm.Parameters.AddWithValue("@LName", LName);
-            comm.Parameters.AddWithValue("@Street1", Street1);
-            comm.Parameters.AddWithValue("@Street2", Street2);
-            comm.Parameters.AddWithValue("@City", City);
-            comm.Parameters.AddWithValue("@State", State);
-            comm.Parameters.AddWithValue("@Zipcode", Zipcode);
-            comm.Parameters.AddWithValue("@Country", Country);
-            comm.Parameters.AddWithValue("@Phone", Phone);
-            comm.Parameters.AddWithValue("@Email", Email);
-
-            try
-            {
-                conn.Open();
-
-                // Perform our add
-                strFeedback = comm.ExecuteNonQuery().ToString() + " Record(s) Added";
-
-                conn.Close();
-
-                // got here...we must be fine
-                // strFeedback = "All good here";   // Main job is to add now, not just connect...
-            }
-            catch (Exception err)
-            {
-                strFeedback = "ERROR: " + err.Message;
-            }
-
-            return strFeedback;     // Return User feedback
-        }
-
-
         // Function that searchs for a Person, or Persons, in DB
-        public DataSet SearchContacts(String FName, String LName)
+        public DataSet SearchEmployees(String FName, String LName)
         {
             //Create a dataset to return filled
             DataSet ds = new DataSet();
@@ -201,11 +147,6 @@ namespace WindowsFormsApplication1
             {
                 strSQL += " AND FName LIKE @FName";
                 comm.Parameters.AddWithValue("@FName", "%" + FName + "%");
-            }
-            if (MName.Length > 0)
-            {
-                strSQL += " AND MName LIKE @MName";
-                comm.Parameters.AddWithValue("@MName", "%" + MName + "%");
             }
             if (LName.Length > 0)
             {
@@ -243,7 +184,7 @@ namespace WindowsFormsApplication1
         //Method that returns a Data Reader filled with all the data
         // of one person.  This one person is specified by the ID passed
         // to this function
-        public SqlDataReader FindOnePerson(int intPerson_ID)
+        public SqlDataReader FindOneEmployee(int intPerson_ID)
         {
             //Create and Initialize the DB Tools we need
             SqlConnection conn = new SqlConnection();
@@ -253,7 +194,7 @@ namespace WindowsFormsApplication1
             string strConn = @"Server=SQL.NEIT.EDU,4500;Database=SE255_NRicci;User Id=SE255_NRicci;Password = 001405200;";  // Connection string
 
             //My SQL command string to pull up one person's data
-            string sqlString = "SELECT Person_ID, FName, MName, LName FROM Employees WHERE Person_ID = @Person_ID;";
+            string sqlString = "SELECT Person_ID, FName, LName FROM Employees WHERE Person_ID = @Person_ID;";
 
             //Tell the connection object the who, what, where, how
             conn.ConnectionString = strConn;
@@ -268,7 +209,6 @@ namespace WindowsFormsApplication1
 
             //Return some form of feedback
             return comm.ExecuteReader();   //Return the dataset to be used by others (the calling form)
-
         }
     };
 }
