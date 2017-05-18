@@ -167,7 +167,7 @@ namespace WindowsFormsApplication1
                 else
                 {
                     email = value;
-                }  
+                }
             }
         }
 
@@ -314,8 +314,8 @@ namespace WindowsFormsApplication1
             string strConn = @"Server=SQL.NEIT.EDU,4500;Database=SE255_NRicci;User Id=SE255_NRicci;Password = 001405200;";  // Connection string
 
             // My SQL command string to pull up one person's data
-            string sqlString = 
-            "SELECT Person_ID, LName, FName, MName FROM Persons WHERE Person_ID = @Person_ID;";
+            string sqlString =
+            "SELECT Person_ID, FName, MName, LName, Street1, Street2, City, State, ZipCode, Country, Phone, Email FROM Persons WHERE Person_ID = @Person_ID;";
 
             // Tell the connection object the who, what, where, how
             conn.ConnectionString = strConn;

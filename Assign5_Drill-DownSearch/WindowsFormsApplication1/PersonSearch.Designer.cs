@@ -36,6 +36,8 @@
             this.lblFirstName = new System.Windows.Forms.Label();
             this.btnClearSearch = new System.Windows.Forms.Button();
             this.chkEmployee = new System.Windows.Forms.CheckBox();
+            this.lblEmployeeID = new System.Windows.Forms.Label();
+            this.txtEmployeeID = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.gvResults)).BeginInit();
             this.SuspendLayout();
             // 
@@ -50,7 +52,7 @@
             // 
             // btnSearch
             // 
-            this.btnSearch.Location = new System.Drawing.Point(313, 52);
+            this.btnSearch.Location = new System.Drawing.Point(335, 52);
             this.btnSearch.Name = "btnSearch";
             this.btnSearch.Size = new System.Drawing.Size(100, 27);
             this.btnSearch.TabIndex = 10;
@@ -109,12 +111,34 @@
             this.chkEmployee.TabIndex = 15;
             this.chkEmployee.Text = "Employee?";
             this.chkEmployee.UseVisualStyleBackColor = true;
+            this.chkEmployee.Visible = false;
+            this.chkEmployee.CheckedChanged += new System.EventHandler(this.chkEmployee_CheckedChanged);
+            // 
+            // lblEmployeeID
+            // 
+            this.lblEmployeeID.AutoSize = true;
+            this.lblEmployeeID.Location = new System.Drawing.Point(171, 61);
+            this.lblEmployeeID.Name = "lblEmployeeID";
+            this.lblEmployeeID.Size = new System.Drawing.Size(25, 13);
+            this.lblEmployeeID.TabIndex = 16;
+            this.lblEmployeeID.Text = "ID#";
+            this.lblEmployeeID.Visible = false;
+            // 
+            // txtEmployeeID
+            // 
+            this.txtEmployeeID.Location = new System.Drawing.Point(199, 60);
+            this.txtEmployeeID.Name = "txtEmployeeID";
+            this.txtEmployeeID.Size = new System.Drawing.Size(112, 20);
+            this.txtEmployeeID.TabIndex = 17;
+            this.txtEmployeeID.Visible = false;
             // 
             // PersonSearch
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(625, 382);
+            this.Controls.Add(this.txtEmployeeID);
+            this.Controls.Add(this.lblEmployeeID);
             this.Controls.Add(this.chkEmployee);
             this.Controls.Add(this.btnClearSearch);
             this.Controls.Add(this.gvResults);
@@ -141,5 +165,7 @@
         private System.Windows.Forms.Label lblFirstName;
         private System.Windows.Forms.Button btnClearSearch;
         private System.Windows.Forms.CheckBox chkEmployee;
+        private System.Windows.Forms.Label lblEmployeeID;
+        private System.Windows.Forms.TextBox txtEmployeeID;
     }
 }

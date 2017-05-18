@@ -15,37 +15,19 @@ namespace WindowsFormsApplication1
         public PersonSearch()
         {
             InitializeComponent();
-
-            // Set Employee status to false to start
-            chkEmployee.Checked = false;
         }
 
         private void btnSearch_Click(object sender, EventArgs e)
-        {
-            if (chkEmployee.Checked == true)
-            {
-                // Get Data
-                Employee temp = new Employee();
-                // Perform the search we created in Person class and store the returned dataset
-                DataSet ds = temp.SearchEmployees(txtFirstName.Text, txtLastName.Text);
+        { 
+            // Get Data
+            Person temp = new Person();
+            // Perform the search we created in Person class and store the returned dataset
+            DataSet ds = temp.SearchContacts(txtFirstName.Text, txtLastName.Text);
 
-                // Display data (dataset)
-                gvResults.DataSource = ds;                              // point datagrid to dataset
-                gvResults.DataMember = ds.Tables["Employees"].ToString(); // What table in the dataset
-                // gvResults.DataMember = ds.Tables[0].TableName;       // Alt. Method to display table without knowing the name
-            }
-            else
-            {
-                // Get Data
-                Person temp = new Person();
-                // Perform the search we created in Person class and store the returned dataset
-                DataSet ds = temp.SearchContacts(txtFirstName.Text, txtLastName.Text);
-
-                // Display data (dataset)
-                gvResults.DataSource = ds;                              // point datagrid to dataset
-                gvResults.DataMember = ds.Tables["Persons"].ToString(); // What table in the dataset
-                // gvResults.DataMember = ds.Tables[0].TableName;       // Alt. Method to display table without knowing the name
-            }
+            // Display data (dataset)
+            gvResults.DataSource = ds;                              // point datagrid to dataset
+            gvResults.DataMember = ds.Tables["Persons"].ToString(); // What table in the dataset
+            // gvResults.DataMember = ds.Tables[0].TableName;       // Alt. Method to display table without knowing the name
         }
 
         private void btnClearSearch_Click(object sender, EventArgs e)
@@ -59,6 +41,9 @@ namespace WindowsFormsApplication1
                     ((TextBox)c).Text = String.Empty;
                 }
             }
+
+            // Reset EmployeeID Checkbox
+            chkEmployee.Checked = false;
         }
 
         private void gvResults_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
@@ -67,7 +52,7 @@ namespace WindowsFormsApplication1
             string strPerson_ID = gvResults.Rows[e.RowIndex].Cells[0].Value.ToString();
 
             // Display data in Pop-up
-            MessageBox.Show(strPerson_ID);
+            //MessageBox.Show("Person ID: " + strPerson_ID);
 
             // Convert the string over to an integer
             int intPerson_ID = Convert.ToInt32(strPerson_ID);
@@ -80,6 +65,16 @@ namespace WindowsFormsApplication1
              */
             Form1 Editor = new Form1(intPerson_ID);
             Editor.ShowDialog();
+        }
+
+        private void chkEmployee_CheckedChanged(object sender, EventArgs e)
+        {
+            // Show EmployeeID Label + Textbox
+            //lblEmployeeID.Enabled = true;
+            //lblEmployeeID.Visible = true;
+            //txtEmployeeID.Enabled = true;
+            //txtEmployeeID.Visible = true;
+
         }
     }
 }

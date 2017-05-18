@@ -56,6 +56,19 @@ namespace WindowsFormsApplication1
             return result;
         }
 
+        // Receives a double and we can let user know if it is filled in
+        public static bool IsItFilledIn(double temp, int minlen)
+        {
+            bool result = false;
+
+            if (temp.ToString().Length >= minlen)
+            {
+                result = true;
+            }
+
+            return result;
+        }
+
         // Receives a string to check if field is null and returns true or false
         public static bool IsNull(string temp)
         {

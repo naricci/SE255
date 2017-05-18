@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-// Lab 4 System Libraries to include
 using System.Data;                  // Library to bring in a dataset
 using System.Data.SqlClient;        // Library to connect to SQL Server
 
@@ -12,19 +11,45 @@ namespace WindowsFormsApplication1
     public class Employee : Person
     {
         // Set private variables within Employee class
+        //private string fName;
+        //private string mName;
+        //private string lName;
+        //private string street1;
+        //private string street2;
+        //private string city;
+        //private string state;
+        //private string country;
+        //private string zip;
+        //private string phone;
+        //private string email;
+        private string employed;
         private string employeeID;
         private double hourlyRate;
         private string feedback;
 
         // Create public variables to use as the front-end for their private counterparts above
+        public string Employed
+        {
+            get { return employed; }
+            set { employed = value; }
+        }
+
         public string EmployeeID
         {
             get { return employeeID; }
             set
             {
-                if (ValidationLibrary.IsItFilledIn(value) == false)
+                if (ValidationLibrary.IsItFilledIn(value, 1) == false)
                 {
                     feedback += "ERROR: Please fill in a proper numeric value for Employee ID.\n";
+                }
+                else if (ValidationLibrary.IsWithinRange(value, 1, 10) == false)
+                {
+                    feedback += "ERROR: Employee ID's must be shorter than 10 digits long.\n";
+                }
+                else if (ValidationLibrary.IsAllDigits(value) == false)
+                {
+                    feedback += "ERROR: Employee ID's can only contain numbers!\n";
                 }
                 else
                 {
@@ -38,23 +63,29 @@ namespace WindowsFormsApplication1
             get { return hourlyRate; }
             set
             {
-                if (ValidationLibrary.IsItFilledIn(value) == false)
+                if (ValidationLibrary.IsItFilledIn(value, 2) == false)
                 {
-                    feedback += "ERROR: Please fill in an hourly wage.\n";
+                    feedback += "ERROR: Please fill in an Hourly Wage.\n";
                 }
-                else if (ValidationLibrary.IsNull(value.ToString()) == false)
+                else if (ValidationLibrary.IsNumber(value.ToString()) == false)
                 {
-                    feedback += "ERROR: Please fill in an appropriate hourly wage.\n";
+                    feedback += "ERROR: Please fill in a numeric value for Hourly Wage.\n";
                 }
                 else if (hourlyRate < 10.00)
                 {
-                    feedback += "ERROR: Hourly wage must be at least $10.\n";
+                    feedback += "ERROR: Hourly Wage must be at least $10.\n";
                 }
                 else
                 { 
                     hourlyRate = value;
                 }
             }
+        }
+
+        public string Feedback
+        {
+            get { return feedback; }
+            set { feedback = value; }
         }
 
 
@@ -69,8 +100,12 @@ namespace WindowsFormsApplication1
         }
 
         // Overloaded Constructor
-        public Employee(string fName, string mName, string lName, string street1, string street2, string city, string state, string zipcode, string country, string phone, string email, string employeeID, double hourlyRate):base()
+        public Employee(string fName, string mName, string lName, string street1, string street2, string city, string state, string zipcode, string country, string phone, string email, string employed, string employeeID, double hourlyRate):base()
         {
+            this.Employed = employed;
+            this.EmployeeID = employeeID;
+            this.HourlyRate = hourlyRate;
+
             // initialize employee hourly rate to minimum wage
             hourlyRate = 10;
             
@@ -92,7 +127,7 @@ namespace WindowsFormsApplication1
             SqlCommand comm = new SqlCommand(); // Create a Command Object
             // Needs to know the connection and sql string
             comm.Connection = conn;
-            comm.CommandText = "INSERT INTO Employees (FName, MName, LName, Street1, Street2, City, State, Zipcode, Country, Phone, Email, EmployeeID, HourlyRate) VALUES (@FName, @MName, @LName, @Street1, @Street2, @City, @State, @Zipcode, @Country, @Phone, @Email, @EmployeeID, @HourlyRate)";
+            comm.CommandText = "INSERT INTO Employees (FName, MName, LName, Street1, Street2, City, State, Zipcode, Country, Phone, Email, Employed, EmployeeID, HourlyRate) VALUES (@FName, @MName, @LName, @Street1, @Street2, @City, @State, @Zipcode, @Country, @Phone, @Email, @Employed, @EmployeeID, @HourlyRate)";
 
             comm.Parameters.AddWithValue("@FName", FName);
             comm.Parameters.AddWithValue("@MName", MName);
@@ -105,6 +140,7 @@ namespace WindowsFormsApplication1
             comm.Parameters.AddWithValue("@Country", Country);
             comm.Parameters.AddWithValue("@Phone", Phone);
             comm.Parameters.AddWithValue("@Email", Email);
+            comm.Parameters.AddWithValue("@Employed", Employed);
             comm.Parameters.AddWithValue("@EmployeeID", EmployeeID);
             comm.Parameters.AddWithValue("@HourlyRate", HourlyRate);
 
@@ -114,7 +150,7 @@ namespace WindowsFormsApplication1
                 conn.Open();
 
                 // Perform our add
-                strFeedback = comm.ExecuteNonQuery().ToString() + " Record(s) Added";
+                strFeedback = comm.ExecuteNonQuery().ToString() + " Record(s) Added.";
 
                 conn.Close();
 
@@ -127,88 +163,6 @@ namespace WindowsFormsApplication1
             }
 
             return strFeedback;     // Return User feedback
-        }
-
-
-        // Function that searchs for a Person, or Persons, in DB
-        public DataSet SearchEmployees(String FName, String LName)
-        {
-            //Create a dataset to return filled
-            DataSet ds = new DataSet();
-
-            //Create a command for our SQL statement
-            SqlCommand comm = new SqlCommand();
-
-            //Write a Select Statement to perform Search
-            String strSQL = "SELECT Person_ID, FName, MName, LName FROM Employees WHERE 0=0";
-
-            //If the First/Last Name is filled in include it as search criteria
-            if (FName.Length > 0)
-            {
-                strSQL += " AND FName LIKE @FName";
-                comm.Parameters.AddWithValue("@FName", "%" + FName + "%");
-            }
-            if (LName.Length > 0)
-            {
-                strSQL += " AND LName LIKE @LName";
-                comm.Parameters.AddWithValue("@LName", "%" + LName + "%");
-            }
-
-            //Create DB tools and Configure
-            //*********************************************************************************************
-            SqlConnection conn = new SqlConnection();
-            //Create the who, what where of the DB
-            string strConn = @"Server=SQL.NEIT.EDU,4500;Database=SE255_NRicci;User Id=SE255_NRicci;Password = 001405200;";   // Connection String
-            conn.ConnectionString = strConn;
-
-            //Fill in basic info to command object
-            comm.Connection = conn;     //tell the commander what connection to use
-            comm.CommandText = strSQL;  //tell the command what to say
-
-            //Create Data Adapter
-            SqlDataAdapter da = new SqlDataAdapter();
-            da.SelectCommand = comm;    //commander needs a translator(dataAdapter) to speak with datasets
-
-            //*********************************************************************************************
-
-            //Get Data
-            conn.Open();                //Open the connection (pick up the phone)
-            da.Fill(ds, "Employees");     //Fill the dataset with results from database and call it "Persons"
-            conn.Close();               //Close the connection (hangs up phone)
-
-            //Return the data
-            return ds;
-        }
-
-
-        //Method that returns a Data Reader filled with all the data
-        // of one person.  This one person is specified by the ID passed
-        // to this function
-        public SqlDataReader FindOneEmployee(int intPerson_ID)
-        {
-            //Create and Initialize the DB Tools we need
-            SqlConnection conn = new SqlConnection();
-            SqlCommand comm = new SqlCommand();
-
-            //My Connection String
-            string strConn = @"Server=SQL.NEIT.EDU,4500;Database=SE255_NRicci;User Id=SE255_NRicci;Password = 001405200;";  // Connection string
-
-            //My SQL command string to pull up one person's data
-            string sqlString = "SELECT Person_ID, FName, LName FROM Employees WHERE Person_ID = @Person_ID;";
-
-            //Tell the connection object the who, what, where, how
-            conn.ConnectionString = strConn;
-
-            //Give the command object info it needs
-            comm.Connection = conn;
-            comm.CommandText = sqlString;
-            comm.Parameters.AddWithValue("@Person_ID", intPerson_ID);
-
-            //Open the DataBase Connection and Yell our SQL Command
-            conn.Open();
-
-            //Return some form of feedback
-            return comm.ExecuteReader();   //Return the dataset to be used by others (the calling form)
         }
     };
 }

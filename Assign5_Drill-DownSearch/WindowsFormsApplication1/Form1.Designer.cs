@@ -67,7 +67,6 @@
             this.txtFName.Name = "txtFName";
             this.txtFName.Size = new System.Drawing.Size(128, 20);
             this.txtFName.TabIndex = 0;
-            this.txtFName.Text = "Joe";
             // 
             // txtMName
             // 
@@ -82,7 +81,6 @@
             this.txtLName.Name = "txtLName";
             this.txtLName.Size = new System.Drawing.Size(154, 20);
             this.txtLName.TabIndex = 2;
-            this.txtLName.Text = "Shmo";
             // 
             // txtStreet1
             // 
@@ -185,7 +183,6 @@
             this.txtCity.Name = "txtCity";
             this.txtCity.Size = new System.Drawing.Size(168, 20);
             this.txtCity.TabIndex = 5;
-            this.txtCity.Text = "El Paso";
             // 
             // txtState
             // 
@@ -193,7 +190,6 @@
             this.txtState.Name = "txtState";
             this.txtState.Size = new System.Drawing.Size(157, 20);
             this.txtState.TabIndex = 6;
-            this.txtState.Text = "TX";
             // 
             // txtZipCode
             // 
@@ -201,7 +197,6 @@
             this.txtZipCode.Name = "txtZipCode";
             this.txtZipCode.Size = new System.Drawing.Size(106, 20);
             this.txtZipCode.TabIndex = 7;
-            this.txtZipCode.Text = "02818";
             // 
             // txtPhone
             // 
@@ -209,7 +204,6 @@
             this.txtPhone.Name = "txtPhone";
             this.txtPhone.Size = new System.Drawing.Size(149, 20);
             this.txtPhone.TabIndex = 9;
-            this.txtPhone.Text = "4018845888";
             // 
             // lblEmail
             // 
@@ -226,7 +220,6 @@
             this.txtEmail.Name = "txtEmail";
             this.txtEmail.Size = new System.Drawing.Size(207, 20);
             this.txtEmail.TabIndex = 10;
-            this.txtEmail.Text = "joetotheshmo@aol.com";
             // 
             // btnSubmit
             // 
@@ -243,9 +236,8 @@
             this.lblFeedback.AutoSize = true;
             this.lblFeedback.Location = new System.Drawing.Point(12, 289);
             this.lblFeedback.Name = "lblFeedback";
-            this.lblFeedback.Size = new System.Drawing.Size(58, 13);
+            this.lblFeedback.Size = new System.Drawing.Size(0, 13);
             this.lblFeedback.TabIndex = 21;
-            this.lblFeedback.Text = "Feedback:";
             // 
             // lblCountry
             // 
@@ -262,7 +254,6 @@
             this.txtCountry.Name = "txtCountry";
             this.txtCountry.Size = new System.Drawing.Size(130, 20);
             this.txtCountry.TabIndex = 8;
-            this.txtCountry.Text = "Canada";
             // 
             // btnClear
             // 
@@ -278,7 +269,7 @@
             // 
             this.chkEmployee.AutoSize = true;
             this.chkEmployee.Location = new System.Drawing.Point(14, 198);
-            this.chkEmployee.Margin = new System.Windows.Forms.Padding(2);
+            this.chkEmployee.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.chkEmployee.Name = "chkEmployee";
             this.chkEmployee.Size = new System.Drawing.Size(72, 17);
             this.chkEmployee.TabIndex = 11;
@@ -301,7 +292,6 @@
             this.txtEmployeeID.Name = "txtEmployeeID";
             this.txtEmployeeID.Size = new System.Drawing.Size(126, 20);
             this.txtEmployeeID.TabIndex = 12;
-            this.txtEmployeeID.Visible = false;
             // 
             // lblHourlyRate
             // 
@@ -318,7 +308,6 @@
             this.txtHourlyRate.Name = "txtHourlyRate";
             this.txtHourlyRate.Size = new System.Drawing.Size(126, 20);
             this.txtHourlyRate.TabIndex = 13;
-            this.txtHourlyRate.Visible = false;
             // 
             // lblPerson_ID
             // 
